@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { range, isEqual } from "lodash";
+import { range, isEqual, times } from "lodash";
 import { TicTacToe } from "./TicTacToe";
 import React from "react";
 import { classNames } from "../utilities/classNames";
@@ -10,8 +10,8 @@ export const Gameboard: FunctionComponent = ({}) => {
   const [currentBoard, setCurrentBoard] = useState([0, 0]);
   const [winner, setWinner] = useState<boolean | null>(null);
 
-  const [board, setBoard] = useState<boolean[][]>(
-    new Array(3).fill(new Array(3).fill(null))
+  const [board, setBoard] = useState<(boolean | null)[][]>(
+    times(3, () => times(3, () => null))
   );
 
   function onWin(i: number, j: number, winner: boolean) {

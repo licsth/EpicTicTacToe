@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { classNames } from "../utilities/classNames";
+import { times } from "lodash";
 import React from "react";
 import { checkWinner } from "../utilities/checkWinner";
 
@@ -16,8 +17,8 @@ export const TicTacToe: FunctionComponent<Props> = ({
   onMoveDone,
   onWin,
 }) => {
-  const [board, setBoard] = useState<boolean[][]>(
-    new Array(3).fill(new Array(3).fill(null))
+  const [board, setBoard] = useState<(boolean | null)[][]>(
+    times(3, () => times(3, () => null))
   );
 
   function onClick(i: number, j: number) {

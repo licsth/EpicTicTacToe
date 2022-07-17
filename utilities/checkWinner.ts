@@ -1,7 +1,7 @@
 import { range } from 'lodash';
 
 
-export function checkWinner(board: boolean[][]): boolean | null {
+export function checkWinner(board: (boolean | null)[][]): boolean | null {
   for (let i in range(3)) {
     const row = board.map(b => b[i]);
     const col = board[i];

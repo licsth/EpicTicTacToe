@@ -7,7 +7,7 @@ import { checkWinner } from "../utilities/checkWinner";
 
 export const Gameboard: FunctionComponent = ({}) => {
   const [currentPlayer, setCurrentPlayer] = useState(true);
-  const [currentBoard, setCurrentBoard] = useState([0, 0]);
+  const [currentBoard, setCurrentBoard] = useState<number[] | null>(null);
   const [winner, setWinner] = useState<boolean | null>(null);
 
   const [board, setBoard] = useState<(boolean | null)[][]>(
@@ -33,7 +33,7 @@ export const Gameboard: FunctionComponent = ({}) => {
             >
               {currentPlayer ? "orange's" : "blue's"}
             </span>{" "}
-            turn
+            turn.
           </p>
         )}
         {winner != null && (
@@ -60,7 +60,7 @@ export const Gameboard: FunctionComponent = ({}) => {
                 <TicTacToe
                   currentPlayer={currentPlayer}
                   onWin={(w) => onWin(i, j, w)}
-                  active={winner == null && isEqual([i, j], currentBoard)}
+                  active={winner == null && (isEqual([i, j], currentBoard) || currentBoard === null)}
                   onMoveDone={(i, j) => {
                     setCurrentPlayer(!currentPlayer);
                     setCurrentBoard([i, j]);

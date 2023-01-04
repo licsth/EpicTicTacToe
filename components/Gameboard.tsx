@@ -15,6 +15,7 @@ export const Gameboard: FunctionComponent = ({}) => {
   );
 
   function onWin(i: number, j: number, winner: boolean) {
+    if (board[i][j] != null) return;
     const newBoard = [...board];
     newBoard[i] = [...board[i]];
     newBoard[i][j] = winner;
@@ -60,7 +61,10 @@ export const Gameboard: FunctionComponent = ({}) => {
                 <TicTacToe
                   currentPlayer={currentPlayer}
                   onWin={(w) => onWin(i, j, w)}
-                  active={winner == null && (isEqual([i, j], currentBoard) || currentBoard === null)}
+                  active={
+                    winner == null &&
+                    (isEqual([i, j], currentBoard) || currentBoard === null)
+                  }
                   onMoveDone={(i, j) => {
                     setCurrentPlayer(!currentPlayer);
                     setCurrentBoard([i, j]);
